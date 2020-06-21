@@ -1,0 +1,25 @@
+# Syntax Coloring Map For MCP4725
+
+# Datatypes (KEYWORD1)
+MCP4725	KEYWORD1
+
+# Methods and Functions (KEYWORD2)
+begin	KEYWORD2
+read	KEYWORD2
+setValue	KEYWORD2
+getValue	KEYWORD2
+writeDAC	KEYWORD2
+ready	KEYWORD2
+readDAC	KEYWORD2
+readEEPROM	KEYWORD2
+writePowerDownMode	KEYWORD2
+readPowerDownModeEEPROM	KEYWORD2
+readPowerDownModeDAC	KEYWORD2
+powerOnReset	KEYWORD2
+powerOnWakeUp	KEYWORD2
+
+# Instances (KEYWORD2)
+
+# Constants (LITERAL1)
+
+
