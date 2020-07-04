@@ -3,7 +3,7 @@
 //    FILE: MCP4725.h
 //  AUTHOR: Rob Tillaart
 // PURPOSE: Arduino library for 12 bit I2C DAC - MCP4725 
-// VERSION: 0.2.0
+// VERSION: 0.2.1
 //     URL: https://github.com/RobTillaart/MCP4725
 // HISTORY: See MCP4725.cpp
 //
@@ -11,7 +11,7 @@
 #include "Wire.h"
 #include "Arduino.h"
 
-#define MCP4725_VERSION         "0.2.0"
+#define MCP4725_VERSION         "0.2.1"
 
 // constants
 #define MCP4725_MAXVALUE        4095
@@ -45,6 +45,7 @@ public:
     // RDY will be depreciated in the future, use ready() instead.
     inline bool RDY()  { return ready(); };
     bool     ready();
+    uint32_t getLastWriteEEPROM()  { return _lastWriteEEPROM; };
     uint16_t readDAC();
     uint16_t readEEPROM();
 
@@ -60,6 +61,7 @@ private:
     uint16_t _lastValue;
     uint8_t  _powerDownMode;      // DATASHEET P15?
     int      _writeFastMode(const uint16_t value);
+    uint32_t _lastWriteEEPROM;
 
     int      _writeRegisterMode(const uint16_t value, uint8_t reg);
     uint8_t  _readRegister(uint8_t* buffer, const uint8_t length);

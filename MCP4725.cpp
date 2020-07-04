@@ -2,7 +2,7 @@
 //    FILE: MCP4725.cpp
 //  AUTHOR: Rob Tillaart
 // PURPOSE: Arduino library for 12 bit I2C DAC - MCP4725 
-// VERSION: 0.2.0
+// VERSION: 0.2.1
 //     URL: https://github.com/RobTillaart/MCP4725
 //
 // HISTORY:
@@ -18,6 +18,8 @@
 // 0.1.9 - 2019-10-14 replace AVR specific TWBR with Wire.setClock() #131
 // 0.2.0   2020-06-20 #pragma; remove pre 1.0 support; refactor a lot
 //                    RDY() -> ready()
+// 0.2.1   2020-07-04 Add yield(); add getLastWriteEEPROM(); 
+//                    update readme.md + keywords.txt
 //
 
 #include "MCP4725.h"
@@ -36,6 +38,7 @@ MCP4725::MCP4725(const uint8_t deviceAddress)
   _deviceAddress = deviceAddress;
   _lastValue = 0;
   _powerDownMode = 0;
+  _lastWriteEEPROM = 0;
 }
 
 
@@ -89,6 +92,7 @@ int MCP4725::writeDAC(const uint16_t value, const bool EEPROM)
 
 uint16_t MCP4725::readDAC()
 {
+  while(!ready());
   uint8_t buffer[3];
   _readRegister(buffer, 3);
   uint16_t value = buffer[1];
@@ -115,7 +119,7 @@ uint16_t MCP4725::readEEPROM()
 // (true) DAC & EEPROM,
 int MCP4725::writePowerDownMode(const uint8_t PDM, const bool EEPROM)
 {
-  _powerDownMode = (PDM & 0x03); // mask pdm bits only
+  _powerDownMode = (PDM & 0x03); // mask pdm bits only (written later low level)
   return writeDAC(_lastValue, EEPROM);
 }
 
@@ -132,7 +136,7 @@ uint8_t MCP4725::readPowerDownModeEEPROM()
 
 uint8_t MCP4725::readPowerDownModeDAC()
 {
-  while(!ready());
+  while(!ready());  // TODO needed?
   uint8_t buffer[1];
   _readRegister(buffer, 1);
   uint8_t value = (buffer[0] >> 1) & 0x03;
@@ -174,10 +178,11 @@ int MCP4725::_writeFastMode(const uint16_t value)
 }
 
 
-// RDY checks if the last write to EEPROM has been written.
-// until RDY all writes to the MCP4725 are ignored!
+// ready checks if the last write to EEPROM has been written.
+// until ready all writes to the MCP4725 are ignored!
 bool MCP4725::ready()
 {
+  yield();
   uint8_t buffer[1];
   _readRegister(buffer, 1);
   return ((buffer[0] & 0x80) > 0);
@@ -188,6 +193,10 @@ bool MCP4725::ready()
 // reg = MCP4725_DAC | MCP4725_EEPROM
 int MCP4725::_writeRegisterMode(const uint16_t value, uint8_t reg)
 {
+  if (reg & MCP4725_DACEEPROM)
+  {
+    _lastWriteEEPROM = millis();
+  }
   uint8_t h = (value / 16);
   uint8_t l = (value & 0x0F) << 4;
   Wire.beginTransmission(_deviceAddress);
