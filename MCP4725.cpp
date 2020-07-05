@@ -2,7 +2,7 @@
 //    FILE: MCP4725.cpp
 //  AUTHOR: Rob Tillaart
 // PURPOSE: Arduino library for 12 bit I2C DAC - MCP4725 
-// VERSION: 0.2.1
+// VERSION: 0.2.2
 //     URL: https://github.com/RobTillaart/MCP4725
 //
 // HISTORY:
@@ -20,7 +20,7 @@
 //                    RDY() -> ready()
 // 0.2.1   2020-07-04 Add yield(); add getLastWriteEEPROM(); 
 //                    update readme.md + keywords.txt
-//
+// 0.2.2   2020-07-05 add get/setPercentage();
 
 #include "MCP4725.h"
 
