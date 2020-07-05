@@ -3,7 +3,7 @@
 //    FILE: MCP4725.h
 //  AUTHOR: Rob Tillaart
 // PURPOSE: Arduino library for 12 bit I2C DAC - MCP4725 
-// VERSION: 0.2.1
+// VERSION: 0.2.2
 //     URL: https://github.com/RobTillaart/MCP4725
 // HISTORY: See MCP4725.cpp
 //
@@ -11,7 +11,7 @@
 #include "Wire.h"
 #include "Arduino.h"
 
-#define MCP4725_VERSION         "0.2.1"
+#define MCP4725_VERSION         "0.2.2"
 
 // constants
 #define MCP4725_MAXVALUE        4095
@@ -37,9 +37,13 @@ public:
     void     begin();
 
     // uses writeFastMode
-    int      setValue(const uint16_t value);
+    int      setValue(const uint16_t value = 0);
     // returns last value set - cached - much faster than readDAC();
     uint16_t getValue();
+
+    // 0..100.0% - no input check.
+    int      setPercentage(float perc = 0) { return setValue(round(perc * (0.01 * MCP4725_MAXVALUE))); };
+    float    getPercentage() { return getValue() * (100.0 / MCP4725_MAXVALUE); };
 
     int      writeDAC(const uint16_t value, const bool EEPROM = false);
     // RDY will be depreciated in the future, use ready() instead.

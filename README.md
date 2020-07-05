@@ -4,8 +4,12 @@ Arduino library for 12 bit I2C DAC - MCP4725
 
 ## Description
 
-The MCP4725 is an I2C 12 bit Digital to Analog Converter. It is possible to have
-up to 8 MCP4725 on one bus. 
+The MCP4725 is an I2C 12 bit Digital to Analog Converter (DAC). It is possible to have
+up to 8 MCP4725 on one bus. The MCP4725 supports 100KHz 400KHz and 3.4MHz bus speeds.
+
+The output of the MCP4725 depends on the voltage supplied, which is in the range 
+of 2.7V .. 5.5V. Check datasheet for the details.
+
 
 - **MCP4725(deviceAddress)** Constructor, needs I2C address
 - **begin(dataPin, clockPin)** for ESP32
@@ -17,6 +21,8 @@ Therfore it does not update the lastWriteEEPROM timestamp.
 - **getValue()** returns last value set from cache, this is much faster than readDAC().  
 This latter gives the real value from the MCP4725. A difference can be caused by power
 outage a reset etc.
+- **setPercentage(perc)** perc = 0..100.0% Convenience wrapper around setValue().
+- **getPercentage()** returns percentage. Wrapper around getValue().
 - **writeDAC(value, const bool EEPROM = false)** Writes to DAC and conditionally to EEPROM.  
 This latter is for startup / reset behavior. Check datasheet for the detail behavior.
 - **ready()** returns true if a new value can be written to the MCP4725.  
@@ -37,7 +43,7 @@ If one know the specific timing of a sensor one can tune this or even make it ad
 
 ## Experimental
 
-Check datasheet for these functions.
+Check datasheet for these functions, (not tested enough yet).
 
 - **writePowerDownMode(PDM, const bool EEPROM = false)**
 - **readPowerDownModeEEPROM()**

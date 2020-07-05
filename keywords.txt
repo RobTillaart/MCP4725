@@ -18,6 +18,8 @@ readPowerDownModeDAC	KEYWORD2
 powerOnReset	KEYWORD2
 powerOnWakeUp	KEYWORD2
 getLastWriteEEPROM	KEYWORD2
+setPercentage	KEYWORD2
+getPercentage	KEYWORD2
 
 # Instances (KEYWORD2)
 
