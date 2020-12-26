@@ -28,7 +28,7 @@ void setup()
     Serial.println("Could not find sensor");
   }
 
-  Serial.println("end of setup()";
+  Serial.println("end of setup()");
 }
 
 void loop()
