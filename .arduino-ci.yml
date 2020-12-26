@@ -5,3 +5,6 @@ compile:
     - leonardo
     - due
     - zero
+    
+  libraries:
+    - "I2CKeyPad"
