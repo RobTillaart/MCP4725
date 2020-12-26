@@ -32,9 +32,10 @@ public:
     explicit MCP4725(const uint8_t deviceAddress);
 
 #if defined(ESP8266) || defined(ESP32)
-    void     begin(const uint8_t dataPin, const uint8_t clockPin);
+    bool     begin(const uint8_t dataPin, const uint8_t clockPin);
 #endif
-    void     begin();
+    bool     begin();
+    bool     isConnected();
 
     // uses writeFastMode
     int      setValue(const uint16_t value = 0);

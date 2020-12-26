@@ -6,8 +6,6 @@
 //    DATE: 2013-12-01
 //     URL: https://github.com/RobTillaart/MCP4725
 //
-// Released to the public domain
-//
 
 #include "Wire.h"
 #include "MCP4725.h"

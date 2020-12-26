@@ -7,7 +7,7 @@
 //     URL: https://github.com/RobTillaart/MCP4725
 //
 
-// NOte: possible to replace I2CKeypad with Serial code
+// Note: possible to replace I2CKeypad with Serial code
 
 #include "Wire.h"
 #include "MCP4725.h"

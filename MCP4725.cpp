@@ -44,24 +44,38 @@ MCP4725::MCP4725(const uint8_t deviceAddress)
 
 
 #if defined(ESP8266) || defined(ESP32)
-void MCP4725::begin(const uint8_t dataPin, const uint8_t clockPin)
+bool MCP4725::begin(const uint8_t dataPin, const uint8_t clockPin)
 {
   Wire.begin(dataPin, clockPin);
-  // Wire.setClock(100000UL);
-  _lastValue = readDAC();
-  _powerDownMode = readPowerDownModeDAC();
+  if (isConnected())
+  {
+    _lastValue = readDAC();
+    _powerDownMode = readPowerDownModeDAC();
+    return true;
+  }
+  return false;
 }
 #endif
 
 
-void MCP4725::begin()
+bool MCP4725::begin()
 {
   Wire.begin();
-  // Wire.setClock(100000UL);
-  _lastValue = readDAC();
-  _powerDownMode = readPowerDownModeDAC();
+  if (isConnected())
+  {
+    _lastValue = readDAC();
+    _powerDownMode = readPowerDownModeDAC();
+    return true;
+  }
+  return false;
 }
 
+
+bool MCP4725::isConnected()
+{
+  Wire.beginTransmission(_deviceAddress);
+  return (Wire.endTransmission() == 0);
+}
 
 int MCP4725::setValue(const uint16_t value)
 {
