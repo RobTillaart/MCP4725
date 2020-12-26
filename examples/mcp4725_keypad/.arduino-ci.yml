@@ -6,5 +6,5 @@ compile:
 #    - due
 #    - zero
     
-  libraries:
-    - "I2CKeyPad"
+#  libraries:
+#    - "I2CKeyPad"
