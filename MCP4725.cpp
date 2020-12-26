@@ -77,6 +77,7 @@ bool MCP4725::isConnected()
   return (Wire.endTransmission() == 0);
 }
 
+
 int MCP4725::setValue(const uint16_t value)
 {
   if (value == _lastValue) return 0;

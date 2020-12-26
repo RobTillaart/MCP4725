@@ -20,10 +20,14 @@ void setup()
 {
   Serial.begin(115200);
 
-  Serial.println(__FILE);
+  Serial.println(__FILE__);
   Serial.println(MCP4725_VERSION);
 
-  MCP.begin();
+  if (MCP.begin() == false)
+  {
+    Serial.println("Could not find sensor");
+  }
+
   Serial.println("end of setup()";
 }
 

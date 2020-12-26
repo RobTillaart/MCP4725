@@ -19,6 +19,7 @@
 // errors
 #define MCP4725_VALUE_ERROR     -999
 #define MCP4725_REG_ERROR       -998
+#define MCP4725_NOT CONNECTED   -997
 
 // powerDown Mode - TODO ENUM?
 #define MCP4725_PDMODE_NORMAL   0x00
