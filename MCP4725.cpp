@@ -2,25 +2,26 @@
 //    FILE: MCP4725.cpp
 //  AUTHOR: Rob Tillaart
 // PURPOSE: Arduino library for 12 bit I2C DAC - MCP4725 
-// VERSION: 0.2.2
+// VERSION: 0.2.3
 //     URL: https://github.com/RobTillaart/MCP4725
 //
 // HISTORY:
-// 0.1.00 - 2013-11-24 initial version
-// 0.1.01 - 2013-11-30 added readDAC() & writeDAC (registerwrite)
-// 0.1.02 - 2013-12-01 added readEEPROM() & RDY()
-// 0.1.03 - 2013-12-01 added powerDownMode code
-// 0.1.04 - 2013-12-04 improved the generalCall code (still experimental)
-// 0.1.05 - 2015-03-06 refactoring, stricter interfaces
-// 0.1.6 - 2017-04-19 refactor + remove timeout - https://github.com/RobTillaart/Arduino/issues/63
-// 0.1.7 - 2017-04-20 refactor the removed timeout (Thanks to Koepel)
-// 0.1.8 - 2018-10-24 fix read only var #115 (kudos to perl1234)
-// 0.1.9 - 2019-10-14 replace AVR specific TWBR with Wire.setClock() #131
-// 0.2.0   2020-06-20 #pragma; remove pre 1.0 support; refactor a lot
-//                    RDY() -> ready()
-// 0.2.1   2020-07-04 Add yield(); add getLastWriteEEPROM(); 
-//                    update readme.md + keywords.txt
-// 0.2.2   2020-07-05 add get/setPercentage();
+// 0.1.00   2013-11-24  initial version
+// 0.1.01   2013-11-30  added readDAC() & writeDAC (registerwrite)
+// 0.1.02   2013-12-01  added readEEPROM() & RDY()
+// 0.1.03   2013-12-01  added powerDownMode code
+// 0.1.04   2013-12-04  improved the generalCall code (still experimental)
+// 0.1.05   2015-03-06  refactoring, stricter interfaces
+// 0.1.6 -  2017-04-19  refactor + remove timeout - https://github.com/RobTillaart/Arduino/issues/63
+// 0.1.7 -  2017-04-20  refactor the removed timeout (Thanks to Koepel)
+// 0.1.8 -  2018-10-24  fix read only var #115 (kudos to perl1234)
+// 0.1.9 -  2019-10-14  replace AVR specific TWBR with Wire.setClock() #131
+// 0.2.0    2020-06-20  #pragma; remove pre 1.0 support; refactor a lot
+//                      RDY() -> ready()
+// 0.2.1    2020-07-04  Add yield(); add getLastWriteEEPROM(); 
+//                      update readme.md + keywords.txt
+// 0.2.2    2020-07-05  add get/setPercentage();
+// 0.2.3    2020-12-26  arduino-CI
 
 #include "MCP4725.h"
 
