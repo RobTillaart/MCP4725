@@ -21,7 +21,7 @@
 // 0.2.1    2020-07-04  Add yield(); add getLastWriteEEPROM(); 
 //                      update readme.md + keywords.txt
 // 0.2.2    2020-07-05  add get/setPercentage();
-// 0.2.3    2020-12-26  arduino-CI
+// 0.2.3    2020-12-26  arduino-CI, bool isConnected(), bool begin()
 
 #include "MCP4725.h"
 
@@ -44,22 +44,37 @@ MCP4725::MCP4725(const uint8_t deviceAddress)
 
 
 #if defined(ESP8266) || defined(ESP32)
-void MCP4725::begin(const uint8_t dataPin, const uint8_t clockPin)
+bool MCP4725::begin(const uint8_t dataPin, const uint8_t clockPin)
 {
   Wire.begin(dataPin, clockPin);
-  // Wire.setClock(100000UL);
-  _lastValue = readDAC();
-  _powerDownMode = readPowerDownModeDAC();
+  if (isConnected())
+  {
+    _lastValue = readDAC();
+    _powerDownMode = readPowerDownModeDAC();
+    return true;
+  }
+  return false;
 }
 #endif
 
 
-void MCP4725::begin()
+bool MCP4725::begin()
 {
   Wire.begin();
-  // Wire.setClock(100000UL);
-  _lastValue = readDAC();
-  _powerDownMode = readPowerDownModeDAC();
+  if (isConnected())
+  {
+    _lastValue = readDAC();
+    _powerDownMode = readPowerDownModeDAC();
+    return true;
+  }
+  return false;
+}
+
+
+bool MCP4725::isConnected()
+{
+  Wire.beginTransmission(_deviceAddress);
+  return (Wire.endTransmission() == 0);
 }
 
 
@@ -231,7 +246,7 @@ uint8_t MCP4725::_readRegister(uint8_t* buffer, const uint8_t length)
 // name comes from datasheet
 int MCP4725::_generalCall(const uint8_t gc)
 {
-  Wire.beginTransmission(0);
+  Wire.beginTransmission(0);  // _deviceAddress
   Wire.write(gc);
   return Wire.endTransmission();
 }

@@ -17,8 +17,10 @@
 #define MCP4725_MAXVALUE        4095
 
 // errors
+#define MCP4725_OK              0
 #define MCP4725_VALUE_ERROR     -999
 #define MCP4725_REG_ERROR       -998
+#define MCP4725_NOT CONNECTED   -997
 
 // powerDown Mode - TODO ENUM?
 #define MCP4725_PDMODE_NORMAL   0x00
@@ -32,9 +34,10 @@ public:
     explicit MCP4725(const uint8_t deviceAddress);
 
 #if defined(ESP8266) || defined(ESP32)
-    void     begin(const uint8_t dataPin, const uint8_t clockPin);
+    bool     begin(const uint8_t dataPin, const uint8_t clockPin);
 #endif
-    void     begin();
+    bool     begin();
+    bool     isConnected();
 
     // uses writeFastMode
     int      setValue(const uint16_t value = 0);
