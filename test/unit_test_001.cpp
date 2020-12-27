@@ -58,13 +58,14 @@ unittest(test_constructor)
 {
   fprintf(stderr, "VERSION: %s\n", MCP4725_VERSION);
   MCP4725 MCP(0x62);
+  Wire.begin();
 
   fprintf(stderr, "test default values\n");
   assertEqual(MCP4725_MAXVALUE, 4095);
   assertEqual(0, MCP.getValue());
   assertEqual(0, MCP.getLastWriteEEPROM());
 
-  fprintf(stderr, "test start");
+  fprintf(stderr, "test start\n");
 
   assureTrue(MCP.isConnected());
   // assertTrue(MCP.begin());
@@ -76,11 +77,13 @@ unittest(test_constructor)
 unittest(test_get_setValue)
 {
   MCP4725 MCP(0x62);
+  Wire.begin();
   assureTrue(MCP.isConnected());
 
   // assertTrue(MCP.begin());
   // assertTrue(MCP.isConnected());
-  
+
+  // fprintf(stderr, "test start\n");
   // uint16_t last = MCP.getValue();
   // assertEqual(0, last);
   // assertEqual(0, MCP.setValue(last));
