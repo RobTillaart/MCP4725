@@ -17,6 +17,7 @@
 #define MCP4725_MAXVALUE        4095
 
 // errors
+#define MCP4725_OK              0
 #define MCP4725_VALUE_ERROR     -999
 #define MCP4725_REG_ERROR       -998
 #define MCP4725_NOT CONNECTED   -997

@@ -56,8 +56,25 @@ unittest(test_new_operator)
 
 unittest(test_constructor)
 {
-  // TODO
-  assertEqual(1, 1);
+  fprintf(stderr, "VERSION: %s\n", MCP4725_VERSION);
+  MCP4725 MCP(0x62);
+  
+  assertTrue(MCP.begin());
+  assertTrue(MCP.isConnected());
+  assertEqual(MCP4725_MAXVALUE, 4095);
+}
+
+unittest(test_get_setValue)
+{
+  MCP4725 MCP(0x62);
+  
+  assertTrue(MCP.begin());
+  assertTrue(MCP.isConnected());
+  uint16_t last = MCP.getValue();
+  assertEqual(0, last);
+  assertEqual(0, MCP.setValue(last));
+  assertEqual(MCP4725_VALUE_ERROR, MCP.setValue(65535);
+  assertEqual(MCP4725_VALUE_ERROR, MCP.setValue(4096);
 }
 
 unittest_main()
