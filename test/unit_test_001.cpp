@@ -65,6 +65,8 @@ unittest(test_constructor)
   assertEqual(0, MCP.getLastWriteEEPROM());
 
   fprintf(stderr, "test start");
+
+  assureTrue(MCP.isConnected());
   // assertTrue(MCP.begin());
   // assertTrue(MCP.isConnected());
 
@@ -74,8 +76,8 @@ unittest(test_constructor)
 unittest(test_get_setValue)
 {
   MCP4725 MCP(0x62);
-  // dummy
-  assertEqual(1,1);
+  assureTrue(MCP.isConnected());
+
   // assertTrue(MCP.begin());
   // assertTrue(MCP.isConnected());
   
@@ -90,8 +92,7 @@ unittest(test_get_setValue)
 unittest(test_get_setPercentage)
 {
   MCP4725 MCP(0x62);
-  // dummy
-  assertEqual(1,1);
+  assureTrue(MCP.isConnected());
   
   // assertTrue(MCP.begin());
   // assertTrue(MCP.isConnected());
