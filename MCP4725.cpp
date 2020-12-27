@@ -247,7 +247,7 @@ uint8_t MCP4725::_readRegister(uint8_t* buffer, const uint8_t length)
 // name comes from datasheet
 int MCP4725::_generalCall(const uint8_t gc)
 {
-  Wire.beginTransmission(0);
+  Wire.beginTransmission(0);  // _deviceAddress
   Wire.write(gc);
   return Wire.endTransmission();
 }
