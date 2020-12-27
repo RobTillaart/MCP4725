@@ -21,8 +21,7 @@
 // 0.2.1    2020-07-04  Add yield(); add getLastWriteEEPROM(); 
 //                      update readme.md + keywords.txt
 // 0.2.2    2020-07-05  add get/setPercentage();
-// 0.2.3    2020-12-26  arduino-CI
-// 0.2.4    2020-12-    bool isConnected(), bool begin()
+// 0.2.3    2020-12-26  arduino-CI, bool isConnected(), bool begin()
 
 #include "MCP4725.h"
 
