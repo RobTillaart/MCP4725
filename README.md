@@ -17,9 +17,10 @@ of 2.7V .. 5.5V. Check datasheet for the details.
 
 
 - **MCP4725(deviceAddress)** Constructor, needs I2C address
-- **begin(dataPin, clockPin)** for ESP32
-- **begin()** for UNO and other boards with hard wired I2C pins.  
+- **begin(dataPin, clockPin)** for ESP32. Returns true if connected.
+- **begin()** for UNO and other boards with hard wired I2C pins. Returns true if connected.
 Only suppport for Wire so not for Wire1 or Wire2 etc
+- **isConnected()** returns true if device (address) can be seen on the I2C bus.
 - **setValue(value)** value = 0 .. 4095  
 Uses writeFastMode and does not write to EEPROM.
 Therfore it does not update the lastWriteEEPROM timestamp.
