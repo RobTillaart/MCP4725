@@ -184,10 +184,11 @@ int MCP4725::powerOnWakeUp()
 // PAGE 18 DATASHEET
 int MCP4725::_writeFastMode(const uint16_t value)
 {
-  Wire.beginTransmission(_deviceAddress);
+  uint8_t l = value & 0xFF;
   uint8_t h = ((value / 256) & 0x0F);  // set C0 = C1 = 0, no PDmode
   h = h | (_powerDownMode << 4);
-  uint8_t l = value & 0xFF;
+
+  Wire.beginTransmission(_deviceAddress);
   Wire.write(h);
   Wire.write(l);
   return Wire.endTransmission();
