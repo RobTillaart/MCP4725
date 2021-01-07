@@ -10,7 +10,7 @@
 //  other signals are less difficult so have a slightly larger range.
 //
 //  PLATFORM     RANGE          Points/sec    Points/period
-//  UNO          to be tested
+//  UNO          -250 Hz
 //  ESP32        to be tested
 //
 
@@ -20,8 +20,6 @@
 uint16_t     freq = 100;
 uint32_t   period = 0;
 uint32_t   halvePeriod = 0;
-float      amplitudo1 = 0;
-float      amplitudo2 = 0;
 
 // q = square
 // s = sinus
@@ -34,9 +32,19 @@ MCP4725 MCP(0x63);
 uint16_t count;
 uint32_t lastTime = 0;
 
+// LOOKUP TABLE SINE
+uint16_t sine[360];
+
+
 void setup()
 {
   Serial.begin(115200);
+
+  // fill table
+  for (int i = 0; i < 361; i++)
+  {
+    sine[i] = 2047 + round(2047 * sin(i * PI / 180));
+  }
 
   Wire.begin();
   MCP.begin();
@@ -55,14 +63,13 @@ void setup()
   {
     uint32_t now = micros();
 
-    // show # updates per 0.1 second
-    // count++;
+    count++;
 
     if (now - lastTime > 100000)
     {
       lastTime = now;
-      //      Serial.println(count);
-      //      count = 0;
+      // Serial.println(count); // show # updates per 0.1 second
+      count = 0;
       if (Serial.available())
       {
         int c = Serial.read();
@@ -106,13 +113,11 @@ void setup()
         }
         period = 1e6 / freq;
         halvePeriod = period / 2;
-        amplitudo1   = 4095.0 / period;
-        amplitudo2   = 4095.0 / halvePeriod;
         Serial.print(freq);
-              Serial.print('\t');
-              Serial.print(period);
-              Serial.print('\t');
-              Serial.print(halvePeriod);
+        //        Serial.print('\t');
+        //        Serial.print(period);
+        //        Serial.print('\t');
+        //        Serial.print(halvePeriod);
         Serial.println();
       }
     }
@@ -126,11 +131,11 @@ void setup()
         else MCP.setValue(0);
         break;
       case 'w':
-        MCP.setValue(t * amplitudo1 );
+        MCP.setValue(t * 4095 / period );
         break;
       case 't':
-        if (t < halvePeriod) MCP.setValue(t * amplitudo2 );
-        else MCP.setValue( (period - t) * amplitudo2 );
+        if (t < halvePeriod) MCP.setValue(t * 4095 / halvePeriod);
+        else MCP.setValue( (period - t) * 4095 / halvePeriod );
         break;
       case 'r':
         MCP.setValue(random(4096));
@@ -146,7 +151,12 @@ void setup()
         break;
       default:
       case 's':
-        MCP.setValue(0);
+        // reference
+        // float f = ((PI * 2) * t)/period;
+        // MCP.setValue(2047 + 2047 * sin(f));
+        //
+        int idx = (360 * t) / period;
+        MCP.setValue(sine[idx]);  // lookuptable
         break;
     }
   }
