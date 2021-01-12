@@ -9,9 +9,9 @@
 //  depending on the platform, the range of "smooth" sinus is limited.
 //  other signals are less difficult so have a slightly larger range.
 //
-//  PLATFORM     RANGE          Points/sec    Points/period
-//  UNO          -250 Hz
-//  ESP32        to be tested
+//  PLATFORM     SINUS    SQUARE  SAWTOOTH  TRIANGLE
+//  UNO          -100 Hz  
+//  ESP32        -200 Hz  -1000   -250      -100
 //
 
 #include "MCP4725.h"
@@ -47,6 +47,9 @@ void setup()
   }
 
   Wire.begin();
+  // ESP32
+  // MCP.begin(27, 26);
+  // Wire.setClock(3400000);
   MCP.begin();
   Wire.setClock(800000);
 
@@ -61,6 +64,7 @@ void setup()
 
   while (1)
   {
+    yield();
     uint32_t now = micros();
 
     count++;
