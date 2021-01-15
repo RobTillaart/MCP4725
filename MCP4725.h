@@ -13,7 +13,7 @@
 #include "Arduino.h"
 
 
-#define MCP4725_VERSION         ((F("0.3.0"))
+#define MCP4725_VERSION         (F("0.3.0"))
 
 
 // constants
