@@ -91,8 +91,8 @@ unittest(test_writeDAC)
 {
   MCP4725 MCP(0x62);
 
-  assertEqual(MCP4725_VALUE_ERROR, MCP.writeDAC(4096, false);
-  assertEqual(MCP4725_VALUE_ERROR, MCP.writeDAC(4096, true);
+  assertEqual(MCP4725_VALUE_ERROR, MCP.writeDAC(4096, false));
+  assertEqual(MCP4725_VALUE_ERROR, MCP.writeDAC(4096, true));
 }
 
 unittest_main()
