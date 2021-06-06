@@ -107,9 +107,8 @@ uint16_t MCP4725::getValue()
 int MCP4725::setPercentage(float perc)
 {
   if ((perc > 100) || (perc < 0)) return MCP4725_VALUE_ERROR;
-  return setValue(round(perc * (0.01 * MCP4725_MAXVALUE))); };
+  return setValue(round(perc * (0.01 * MCP4725_MAXVALUE)));
 }
-
 
 
 
