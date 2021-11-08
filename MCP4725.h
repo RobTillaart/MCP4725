@@ -52,7 +52,7 @@ public:
 
 
   // 0..100.0% - no input check.
-  int      setPercentage(float perc = 0);
+  int      setPercentage(float percentage = 0);
   float    getPercentage() { return getValue() * (100.0 / MCP4725_MAXVALUE); };
 
 
