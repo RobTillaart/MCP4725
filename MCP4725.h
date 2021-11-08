@@ -52,12 +52,12 @@ public:
 
 
   // 0..100.0% - no input check.
-  int      setPercentage(float perc = 0);
+  int      setPercentage(float percentage = 0);
   float    getPercentage() { return getValue() * (100.0 / MCP4725_MAXVALUE); };
 
 
   int      writeDAC(const uint16_t value, const bool EEPROM = false);
-  // RDY isdepreciated in the future, use ready() instead.
+  // RDY is depreciated in the future, use ready() instead.
   // inline bool RDY()  { return ready(); };
   bool     ready();
   uint32_t getLastWriteEEPROM()  { return _lastWriteEEPROM; };
@@ -88,4 +88,6 @@ private:
   TwoWire*  _wire;
 };
 
+
 // -- END OF FILE --
+

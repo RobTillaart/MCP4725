@@ -104,12 +104,11 @@ uint16_t MCP4725::getValue()
 }
 
 
-int MCP4725::setPercentage(float perc)
+int MCP4725::setPercentage(float percentage)
 {
-  if ((perc > 100) || (perc < 0)) return MCP4725_VALUE_ERROR;
-  return setValue(round(perc * (0.01 * MCP4725_MAXVALUE)));
+  if ((percentage > 100) || (percentage < 0)) return MCP4725_VALUE_ERROR;
+  return setValue(round(percentage * (0.01 * MCP4725_MAXVALUE)));
 }
-
 
 
 // unfortunately it is not possible to write a different value
@@ -270,4 +269,6 @@ int MCP4725::_generalCall(const uint8_t gc)
   return _wire->endTransmission();
 }
 
+
 // -- END OF FILE --
+
