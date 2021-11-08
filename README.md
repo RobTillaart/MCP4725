@@ -103,3 +103,14 @@ It has 4 channels per chip (no experience /library yet)
 ## Operation
 
 See examples
+
+
+## Future
+
+- update documentation
+- test the powerDown modes / functions.
+- write a sketch to measure the **writeDac()** timing if possible.
+- extend unit tests
+- 
+
+

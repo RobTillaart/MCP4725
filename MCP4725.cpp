@@ -111,7 +111,6 @@ int MCP4725::setPercentage(float perc)
 }
 
 
-
 // unfortunately it is not possible to write a different value
 // to the DAC and EEPROM simultaneously or write EEPROM only.
 int MCP4725::writeDAC(const uint16_t value, const bool EEPROM)
@@ -270,4 +269,6 @@ int MCP4725::_generalCall(const uint8_t gc)
   return _wire->endTransmission();
 }
 
+
 // -- END OF FILE --
+
