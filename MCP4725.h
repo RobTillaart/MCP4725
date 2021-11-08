@@ -57,7 +57,7 @@ public:
 
 
   int      writeDAC(const uint16_t value, const bool EEPROM = false);
-  // RDY isdepreciated in the future, use ready() instead.
+  // RDY is depreciated in the future, use ready() instead.
   // inline bool RDY()  { return ready(); };
   bool     ready();
   uint32_t getLastWriteEEPROM()  { return _lastWriteEEPROM; };
