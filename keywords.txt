@@ -1,7 +1,9 @@
 # Syntax Colouring Map For MCP4725
 
+
 # Data types (KEYWORD1)
 MCP4725	KEYWORD1
+
 
 # Methods and Functions (KEYWORD2)
 begin	KEYWORD2
