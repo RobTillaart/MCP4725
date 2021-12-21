@@ -3,7 +3,7 @@
 //    FILE: MCP4725.h
 //  AUTHOR: Rob Tillaart
 // PURPOSE: Arduino library for 12 bit I2C DAC - MCP4725 
-// VERSION: 0.3.2
+// VERSION: 0.3.3
 //     URL: https://github.com/RobTillaart/MCP4725
 //
 
@@ -12,7 +12,7 @@
 #include "Arduino.h"
 
 
-#define MCP4725_VERSION         (F("0.3.2"))
+#define MCP4725_VERSION         (F("0.3.3"))
 
 
 // constants
