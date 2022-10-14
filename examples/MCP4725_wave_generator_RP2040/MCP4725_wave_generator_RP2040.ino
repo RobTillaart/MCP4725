@@ -28,7 +28,7 @@ uint32_t   halvePeriod = 0;
 // r = random
 char mode = 'q';
 
-MCP4725 MCP(0x61);
+MCP4725 MCP(0x63);
 uint16_t count;
 uint32_t lastTime = 0;
 
