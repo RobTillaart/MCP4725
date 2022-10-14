@@ -41,6 +41,18 @@ public:
 #if defined(ESP8266) || defined(ESP32)
   bool     begin(const uint8_t dataPin, const uint8_t clockPin);
 #endif
+
+#if defined (ARDUINO_ARCH_RP2040)
+  void    selectWire() {  _useWire1 = false; };
+  void    selectWire1() {  _useWire1 = true; };
+
+  bool    usesWire() { return !_useWire1; };
+  bool    usesWire1() { return _useWire1; };
+
+  bool    begin(int sda, int scl);
+
+#endif
+
   bool     begin();
   bool     isConnected();
 
@@ -74,6 +86,7 @@ public:
 
 
 private:
+  bool     _useWire1;
   uint8_t  _deviceAddress;
   uint16_t _lastValue;
   uint8_t  _powerDownMode;      // DATASHEET P15?
