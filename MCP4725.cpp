@@ -72,9 +72,9 @@ bool MCP4725::begin(const uint8_t dataPin, const uint8_t clockPin)
 
 #if defined (ARDUINO_ARCH_RP2040)
 
-bool MCP4725::begin(int sda, int scl)
+bool MCP4725::begin(int sda, int scl, int wireUsed)
 {
-  if(_useWire1){
+  if(wireUsed == 1){
     _wire = &Wire1;
   }else{
     _wire = &Wire;

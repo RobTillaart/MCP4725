@@ -46,8 +46,7 @@ void setup()
     sine[i] = 2047 + round(2047 * sin(i * PI / 180));
   }
 
-  MCP.selectWire1();
-  MCP.begin(26, 27);
+  MCP.begin(26, 27, 1);
   Wire1.setClock(800000);
 
   MCP.setValue(0);
