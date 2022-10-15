@@ -44,9 +44,6 @@ public:
 
 #if defined (ARDUINO_ARCH_RP2040)
 
-  bool    usesWire() { return !_useWire1; };
-  bool    usesWire1() { return _useWire1; };
-
   bool    begin(int sda, int scl, int wireUsed = 0);
 
 #endif
