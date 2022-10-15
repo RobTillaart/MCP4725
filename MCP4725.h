@@ -81,7 +81,6 @@ public:
 
 
 private:
-  bool     _useWire1;
   uint8_t  _deviceAddress;
   uint16_t _lastValue;
   uint8_t  _powerDownMode;      // DATASHEET P15?
