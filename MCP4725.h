@@ -44,7 +44,7 @@ public:
 
 #if defined (ARDUINO_ARCH_RP2040)
 
-  bool    begin(int sda, int scl, int wireUsed = 0);
+  bool    begin(int sda, int scl);
 
 #endif
 

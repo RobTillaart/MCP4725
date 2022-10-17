@@ -28,7 +28,7 @@ uint32_t   halvePeriod = 0;
 // r = random
 char mode = 'q';
 
-MCP4725 MCP(0x63);
+MCP4725 MCP(0x63, &Wire1);
 uint16_t count;
 uint32_t lastTime = 0;
 
@@ -46,7 +46,7 @@ void setup()
     sine[i] = 2047 + round(2047 * sin(i * PI / 180));
   }
 
-  MCP.begin(26, 27, 1);
+  MCP.begin(26, 27);
   Wire1.setClock(800000);
 
   MCP.setValue(0);
