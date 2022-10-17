@@ -74,19 +74,17 @@ bool MCP4725::begin(const uint8_t dataPin, const uint8_t clockPin)
 
 bool MCP4725::begin(int sda, int scl)
 {
-  if(_useWire1){
-    _wire = &Wire1;
-  }else{
-    _wire = &Wire;
-  }
   _wire->setSDA(sda);
   _wire->setSCL(scl);
   _wire->begin();
-  if (! isConnected()) return false;
 
-  _lastValue = readDAC();
-  _powerDownMode = readPowerDownModeDAC();
-  return true;
+  if (isConnected())
+  {
+    _lastValue = readDAC();
+    _powerDownMode = readPowerDownModeDAC();
+    return true;
+  }
+  return false;
 }
 
 #endif

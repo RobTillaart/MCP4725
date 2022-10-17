@@ -101,11 +101,7 @@ It has 4 channels per chip (no experience /library yet)
 
 ### RP2040 specific
 
-- **void selectWire()** selects Wire for communication with the DAC. It does no need to be called, but if it must be called before begin()!
-- **void selectWire1()** selects Wire1 for the communication with the DAC. It must be called before begin()!
-- **bool usesWire()** returns true, if Wire is used for the DAC
-- **bool usesWire1()** returns true, if Wire1 is used for the DAC
-- **bool begin(int sda, int scl)** begin communication with the DAC. It has the parameter for selecting on which pins the communication should happen. Check RP2040 Pinout for compatible pins.
+- **bool begin(int sda, int scl)** begin communication with the DAC. It has the parameter for selecting on which pins the communication should happen. Check RP2040 Pinout for compatible pins. When Wire1 is used, it needs to be specified in the constuctor with "&Wire1"
 
 
 ## Operation
