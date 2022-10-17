@@ -43,7 +43,9 @@ public:
 #endif
 
 #if defined (ARDUINO_ARCH_RP2040)
-  bool    begin(int sda, int scl);
+
+  bool    begin(int sda, int scl, int wireUsed = 0);
+
 #endif
 
   bool     begin();
@@ -79,7 +81,6 @@ public:
 
 
 private:
-  bool     _useWire1;
   uint8_t  _deviceAddress;
   uint16_t _lastValue;
   uint8_t  _powerDownMode;      // DATASHEET P15?
