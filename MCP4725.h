@@ -41,6 +41,13 @@ public:
 #if defined(ESP8266) || defined(ESP32)
   bool     begin(const uint8_t dataPin, const uint8_t clockPin);
 #endif
+
+#if defined (ARDUINO_ARCH_RP2040)
+
+  bool    begin(int sda, int scl);
+
+#endif
+
   bool     begin();
   bool     isConnected();
 
