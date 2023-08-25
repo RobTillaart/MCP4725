@@ -7,7 +7,6 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobTillaart/MCP4725/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/RobTillaart/MCP4725.svg?maxAge=3600)](https://github.com/RobTillaart/MCP4725/releases)
 [![PlatformIO Registry](https://badges.registry.platformio.org/packages/robtillaart/library/MCP4725.svg)](https://registry.platformio.org/libraries/robtillaart/MCP4725)
-[![Sponsor](https://img.shields.io/badge/Support_this_project-PayPal-green.svg)](https://paypal.me/robtillaart/EUR)
 
 
 # MCP4725
