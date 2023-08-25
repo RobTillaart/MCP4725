@@ -39,7 +39,7 @@ Returns true if deviceAddress can be found on the I2C bus.
 - **bool isConnected()** returns true if device (address) can be seen on the I2C bus.
 
 
-### base
+### Base
 
 - **int setValue(uint16_t value = 0)** value = 0 .. 4095.  
 Uses writeFastMode and does not write to EEPROM.
