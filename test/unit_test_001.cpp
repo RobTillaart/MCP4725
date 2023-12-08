@@ -39,11 +39,12 @@ unittest_teardown()
 }
 
 
+//  MCP.begin() has blocking calls
+//  cannot be tested without stub
 unittest(test_constructor)
 {
   MCP4725 MCP(0x62);
-  Wire.begin();
-  MCP.begin();
+  Wire.begin()
 
   assertEqual(0x62, MCP.getAddress());
 
@@ -86,8 +87,6 @@ unittest(test_constant)
 unittest(test_get_setValue)
 {
   MCP4725 MCP(0x62);
-  Wire.begin();
-  MCP.begin();
 
   assertEqual(MCP4725_VALUE_ERROR, MCP.setValue(65535));
   assertEqual(MCP4725_VALUE_ERROR, MCP.setValue(4096));
@@ -97,8 +96,6 @@ unittest(test_get_setValue)
 unittest(test_get_setPercentage)
 {
   MCP4725 MCP(0x62);
-  Wire.begin();
-  MCP.begin();
 
   assertEqual(MCP4725_VALUE_ERROR, MCP.setPercentage(345));
   assertEqual(MCP4725_VALUE_ERROR, MCP.setPercentage(100.1));
@@ -108,8 +105,6 @@ unittest(test_get_setPercentage)
 unittest(test_writeDAC)
 {
   MCP4725 MCP(0x62);
-  Wire.begin();
-  MCP.begin();
 
   assertEqual(MCP4725_VALUE_ERROR, MCP.writeDAC(4096, false));
   assertEqual(MCP4725_VALUE_ERROR, MCP.writeDAC(4096, true));
