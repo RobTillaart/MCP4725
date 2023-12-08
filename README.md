@@ -87,12 +87,13 @@ If one know the specific timing of a sensor one can tune this or even make it ad
 (Since 0.3.8) 
 Assumes linear behaviour over 12 bit from 0..4095 == 0 .. maxVoltage.
 The default value is 5.0 volt.
-Allows sort of calibration e.g. setting maxVoltage to 4.9 Volt.
+Allows sort of calibration e.g. setting maxVoltage to 4.952 Volt.
 Furthermore it can be a preferred interface over percentage and raw values.
 
 - **void setMaxVoltage(float v = 5.0)** configures maximum voltage of Vout.
 - **float getMaxVoltage()** return set maximum.
 - **void setVoltage(float v)** set the DAC to voltage v.
+This maps the voltage to 0..4095 and calls **setValue()**
 - **float getVoltage()** get the current setting as a voltage
 
 If this behaviour is not precise enough or should be more "complex" the user can 
@@ -204,11 +205,17 @@ You can control multiple MCP4725 over the hardware I2C bus with an extra IO pin 
 
 - test the powerDown modes / functions.
 - test A0 (address bit) as SELECT pin.
+- optimize
+  - voltage interface uses float divisions => store reciprocate?
+  - takes 2 extra floats.
 
 #### Could
 
 - extend unit tests
-- MCP4725_VERSION ==> MCP4725_LIB_VERSION?
+
+#### Wont
+
+- MCP4725_VERSION ==> MCP4725_LIB_VERSION
 
 
 ## Support

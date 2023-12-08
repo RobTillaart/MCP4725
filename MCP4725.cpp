@@ -55,7 +55,7 @@ uint8_t MCP4725::getAddress()
 
 int MCP4725::setValue(const uint16_t value)
 {
-  if (value == _lastValue) return 0;
+  if (value == _lastValue) return MCP4725_OK;
   if (value > MCP4725_MAXVALUE) return MCP4725_VALUE_ERROR;
   int rv = _writeFastMode(value);
   if (rv == 0) _lastValue = value;

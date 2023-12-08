@@ -56,7 +56,7 @@ unittest(test_constructor)
 }
 
 
-unittest(test_invalid address)
+unittest(test_invalid_address)
 {
   MCP4725 MCP_F(0x22);
   assertFalse(MCP_F.begin());
