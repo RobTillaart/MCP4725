@@ -44,7 +44,7 @@ unittest_teardown()
 unittest(test_constructor)
 {
   MCP4725 MCP(0x62);
-  Wire.begin()
+  Wire.begin();
 
   assertEqual(0x62, MCP.getAddress());
 
