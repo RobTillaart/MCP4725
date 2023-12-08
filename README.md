@@ -24,6 +24,22 @@ The output of the MCP4725 depends on the voltage supplied, which is in the range
 of 2.7V .. 5.5V. Check datasheet for the details.
 
 
+#### 0.4.0 Breaking change
+
+Version 0.4.0 introduced a breaking change.
+You cannot set the pins in **begin()** any more.
+This reduces the dependency of processor dependent Wire implementations.
+The user has to call **Wire.begin()** and can optionally set the Wire pins 
+before calling **begin()**.
+
+
+#### Related
+
+- https://github.com/RobTillaart/AD56x8 (multi channel)
+- https://github.com/RobTillaart/AD568X (single channel lower resolution)
+- https://github.com/RobTillaart/MCP_DAC (SPI interface)
+
+
 ## Interface
 
 ```cpp
@@ -33,11 +49,11 @@ of 2.7V .. 5.5V. Check datasheet for the details.
 ### Constructor
 
 - **MCP4725(uint8_t deviceAddress, TwoWire \*wire = &Wire)** Constructor, needs I2C address, optional set Wire bus
-- **bool begin(uint8_t dataPin, uint8_t clockPin)** for ESP32. Returns true if connected.
-- **bool begin()** for UNO and other boards with hard wired I2C pins. 
+- **bool begin()** initializes internals.
+Returns false if address out of range.
 Returns true if deviceAddress can be found on the I2C bus.
 - **bool isConnected()** returns true if device (address) can be seen on the I2C bus.
-
+- **uint8_t getAddress())** returns address set in constructor.
 
 ### Base
 
@@ -121,7 +137,7 @@ MCP4725A3T-E/CH:  0110 011U   0x66 - 0x67
 ```
 
 If one need more DAC's one might have a look at the MCP4728
-It has 4 channels per chip (no experience /library yet)
+It has 4 channels per chip (no experience / library yet)
 
 
 #### RP2040 specific
@@ -168,7 +184,7 @@ Note that other multiplexers do exist.
 Need to do more tests to see how this solution behaves in practice.  
 Verified to work - see https://forum.arduino.cc/t/using-digital-pins-to-control-two-mcp4725-modules/1161482/7.
 
-The assumption here is that the devices are all from the same address range.
+The assumption here is that the devices are all from the same address range (factory bits).
 
 You can control multiple MCP4725 over the hardware I2C bus with an extra IO pin per device.
 - Connect the address pin of every MCP4725 to an IO pin which will work as a **SELECT** pin.
@@ -192,6 +208,7 @@ You can control multiple MCP4725 over the hardware I2C bus with an extra IO pin 
 #### Could
 
 - extend unit tests
+- MCP4725_VERSION ==> MCP4725_LIB_VERSION?
 
 
 ## Support

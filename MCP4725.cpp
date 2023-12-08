@@ -2,7 +2,7 @@
 //    FILE: MCP4725.cpp
 //  AUTHOR: Rob Tillaart
 // PURPOSE: Arduino library for 12 bit I2C DAC - MCP4725
-// VERSION: 0.3.9
+// VERSION: 0.4.0
 //     URL: https://github.com/RobTillaart/MCP4725
 
 
@@ -29,51 +29,9 @@ MCP4725::MCP4725(const uint8_t deviceAddress, TwoWire *wire)
 }
 
 
-#if defined(ESP8266) || defined(ESP32)
-
-bool MCP4725::begin(const uint8_t dataPin, const uint8_t clockPin)
-{
-  if ((dataPin < 255) && (clockPin < 255))
-  {
-    _wire->begin(dataPin, clockPin);
-  } else {
-    _wire->begin();
-  }
-  if (isConnected())
-  {
-    _lastValue = readDAC();
-    _powerDownMode = readPowerDownModeDAC();
-    return true;
-  }
-  return false;
-}
-
-#endif
-
-
-#if defined (ARDUINO_ARCH_RP2040)
-
-bool MCP4725::begin(int sda, int scl)
-{
-  _wire->setSDA(sda);
-  _wire->setSCL(scl);
-  _wire->begin();
-
-  if (isConnected())
-  {
-    _lastValue = readDAC();
-    _powerDownMode = readPowerDownModeDAC();
-    return true;
-  }
-  return false;
-}
-
-#endif
-
-
 bool MCP4725::begin()
 {
-  _wire->begin();
+  if ((_deviceAddress < 0x60) || (_deviceAddress > 0x67)) return false;
   if (! isConnected()) return false;
 
   _lastValue = readDAC();
@@ -86,6 +44,12 @@ bool MCP4725::isConnected()
 {
   _wire->beginTransmission(_deviceAddress);
   return (_wire->endTransmission() == 0);
+}
+
+
+uint8_t MCP4725::getAddress()
+{
+  return _deviceAddress;
 }
 
 

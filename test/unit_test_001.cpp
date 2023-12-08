@@ -43,6 +43,9 @@ unittest(test_constructor)
 {
   MCP4725 MCP(0x62);
   Wire.begin();
+  MCP.begin();
+
+  assertEqual(0x62, MCP.getAddress());
 
   assertEqual(0, MCP.getValue());
   assertEqual(0, MCP.getLastWriteEEPROM());
@@ -50,6 +53,13 @@ unittest(test_constructor)
   fprintf(stderr, "test start\n");
   assureTrue(MCP.isConnected());
   // assertTrue(MCP.begin());
+}
+
+
+unittest(test_invalid address)
+{
+  MCP4725 MCP_F(0x22);
+  assertFalse(MCP_F.begin());
 }
 
 
@@ -76,6 +86,8 @@ unittest(test_constant)
 unittest(test_get_setValue)
 {
   MCP4725 MCP(0x62);
+  Wire.begin();
+  MCP.begin();
 
   assertEqual(MCP4725_VALUE_ERROR, MCP.setValue(65535));
   assertEqual(MCP4725_VALUE_ERROR, MCP.setValue(4096));
@@ -85,6 +97,8 @@ unittest(test_get_setValue)
 unittest(test_get_setPercentage)
 {
   MCP4725 MCP(0x62);
+  Wire.begin();
+  MCP.begin();
 
   assertEqual(MCP4725_VALUE_ERROR, MCP.setPercentage(345));
   assertEqual(MCP4725_VALUE_ERROR, MCP.setPercentage(100.1));
@@ -94,6 +108,8 @@ unittest(test_get_setPercentage)
 unittest(test_writeDAC)
 {
   MCP4725 MCP(0x62);
+  Wire.begin();
+  MCP.begin();
 
   assertEqual(MCP4725_VALUE_ERROR, MCP.writeDAC(4096, false));
   assertEqual(MCP4725_VALUE_ERROR, MCP.writeDAC(4096, true));
@@ -102,4 +118,6 @@ unittest(test_writeDAC)
 
 unittest_main()
 
-// --------
+
+//  -- END OF FILE --
+
