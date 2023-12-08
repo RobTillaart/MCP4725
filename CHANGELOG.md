@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.4.0] - 2023-12-08
 - refactor API, begin()
 - update readme.md
+- add **uint8_t getAddress()**
 - update examples
 - fix **MCP4725_voltage.ino** example
 - minor edits
