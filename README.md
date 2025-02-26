@@ -206,13 +206,14 @@ Daryl M. reported me of a **XTR116U** based board to communicate a signal over a
 This is also known as **Current Loop**. The board is controlled by an MCP4725.
 An interesting application for the MCP4725 library.
 
-See - https://www.amazon.com/dp/B07CZQHF7N
+- https://www.amazon.com/dp/B07CZQHF7N
+- https://github.com/researchdesignlab/4-20mA_Loop_Current_Transmitter_XTR116U
 
 The advantages of an 4-20mA communication are simplicity and insensitive for noise.
 Current won't drop even when long wires are used.
 It is even possible to power devices (not all) with the current loop.
 
-See - https://en.wikipedia.org/wiki/Current_loop
+- https://en.wikipedia.org/wiki/Current_loop
 
 
 ## Future
